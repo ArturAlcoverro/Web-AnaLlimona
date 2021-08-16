@@ -1,0 +1,76 @@
+@font-face {
+    font-family: "Compadre";
+    src: url("../assets/fonts/Compadre-Wide.otf") format("opentype");
+}
+
+:root {
+    --global-paddings: 2rem
+}
+
+html {
+    font-size: 12px
+}
+
+body {
+    font-size: 1rem;
+    font-family: "Compadre";
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+#container {
+    height: calc(100% - var(--global-paddings)*2);
+    padding: var(--global-paddings);
+    display: flex;
+    flex-direction: column;
+}
+
+ul {
+    padding: 0;
+    margin: 0px;
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    li {
+        flex: 1;
+        margin: 0px 15px 0 0;
+        display: inline;
+
+        p {
+            margin: 0;
+        }
+    }
+}
+
+#project {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    #project-img {
+        margin: 4rem;
+        flex-grow: 1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url("../assets/images/fotos\ web\ para\ colgar.jpg");
+    }
+
+    #project-info {
+        width: 100%;
+        flex-grow: 0;
+
+        #project-name {
+            font-size: 1.8rem
+        }
+
+        #project-description {
+            margin-left: 10px;
+        }
+    }
+}
