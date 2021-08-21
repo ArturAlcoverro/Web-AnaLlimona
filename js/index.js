@@ -47,12 +47,21 @@ function loadProject(project) {
 function loadMedia(projects) {
     projects.forEach(e => {
         if (e.type == "image" || e.type == "big-image") {
-            var newImg = new Image;
-            newImg.onload = function() {
-                console.log(this.src);
+            let image = new Image;
+            image.onload = function () {
+                console.log("image loaded!");
             }
-            newImg.src = e.path;
+            image.src = e.path;
 
+            console.log(e.path);
+        }
+        else if (e.type == "video") {
+            let video = document.createElement("video");
+            video.onloadeddata = (event) => {
+                console.log("video loaded!");
+            }
+
+            video.src = e.path;
             console.log(e.path);
         }
     })
