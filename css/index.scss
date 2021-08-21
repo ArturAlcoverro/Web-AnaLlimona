@@ -20,13 +20,21 @@ body {
 }
 
 #container {
+    max-height: calc(100% - var(--global-paddings)*2);
     height: calc(100% - var(--global-paddings)*2);
     padding: var(--global-paddings);
     display: flex;
     flex-direction: column;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 ul {
+    position: relative;
+    z-index: 1;
     padding: 0;
     margin: 0px;
     width: 100%;
@@ -46,31 +54,74 @@ ul {
     }
 }
 
-#project {
-    display: flex;
+#projects {
     height: 100%;
+
+    button {
+        padding: 0;
+        background: transparent;
+        border: 0;
+        height: calc(100% - var(--global-paddings)*2);
+        width: 50vw;
+        position: absolute;
+        transform: translate(-0%, -50%);
+        top: 50%;
+        left: 0;
+        cursor: pointer;
+    }
+
+    #right-btn {
+        left: 50%;
+    }
+}
+
+.project {
+    height: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
 
-    #project-img {
-        margin: 4rem;
+    .project-img {
+        margin: 8rem;
         flex-grow: 1;
+        // max-height: 500px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        background-image: url("../assets/images/fotos\ web\ para\ colgar-min.jpg");
+
+        &.full-img {
+            margin: 0rem;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
     }
 
-    #project-info {
+    .project-video {
+        margin: 4rem;
+        height: 0px;
+        flex-grow: 1;
+    }
+
+    .project-info {
         width: 100%;
         flex-grow: 0;
+        position: relative;
+        z-index: 1;
 
-        #project-name {
+        .project-name {
             font-size: 1.8rem
         }
 
-        #project-description {
+        .project-description {
             margin-left: 10px;
         }
     }
+}
+
+#hiddden {
+    display: none;
 }

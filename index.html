@@ -6,36 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <script src="js/header.js" defer></script>
+    <script src="js/projects.js" defer></script>
+    <script src="js/index.js" defer></script>
     <title>ANA LLIMONA</title>
 </head>
 
 <body>
     <div id=container>
         <nav>
-            <ul>
-                <li id=name>
-                    <p id=name1>ANA LLIMONA
-                    <p id=name2>
-                <li id=profession>
-                    <p id=profession1>ART DIRECTOR AND
-                    <p id=profession2>GRAFIC DESGINS.
-                <li id=company>
-                    <p id=company1>CURRENTLY WORKING IN
-                    <p id=company2>MIRINDA COMPANY STUDIO.
-                <li id=contact>
-                    <p id=contact1>PORTFOLIO ON REQUEST
-                    <p id=contact2>ANA@LLIMONA.CAT
+            <ul id=personalInfo>
             </ul>
         </nav>
-        <div id=project>
-            <div id="project-img"></div>
-            <div id=project-info>
-                <p><span id=project-name>STUDIO BOOKS</span>
-                    <span id=project-description>ART DIRECTION AND PHOTOGRAPHY</span>
-                </p>
+        <div id=projects>
+            <button onclick="goRight()" id="right-btn"></button>
+            <button onclick="goLeft()" id="left-btn"></button>
+            <!--
+            <div class="project">
+            <div></div>
+                <div class="project-img" style='background-image: url("../assets/images/fotos\ web\ para\ colgar-min.jpg")'></div>
+                <div class=project-info>
+                    <p><span class=project-name>STUDIO BOOKS</span>
+                        <span class=project-description>ART DIRECTION AND PHOTOGRAPHY</span>
+                    </p>
+                </div>
+            </div> 
+            -->
+            <div class="project">
+                <div></div>
+                <div class="project-img full-img" style='background-image: url("assets/images/etiqueta2.jpg")'></div>
+                <!-- <video class=project-video autoplay muted loop src="assets/videos/colchonpararael_animacio.mp4"></video> -->
+                <div class=project-info>
+                    <p><span class=project-name>STUDIO BOOKS</span>
+                        <span class=project-description>ART DIRECTION AND PHOTOGRAPHY</span>
+                    </p>
+                </div>
             </div>
+
         </div>
     </div>
+    <div id="hidden"></div>
 </body>
 
 </html>
