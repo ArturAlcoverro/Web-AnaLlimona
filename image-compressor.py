@@ -32,16 +32,19 @@ if os.path.exists(path):
                         jpg = Image.new("RGB", img.size, (255, 255, 255))
                         jpg.paste(img, mask=img.split()[3])
                         img = jpg
-                    img.save(f"{path}/min/{filename}.jpg", optimize=True, quality=quality)
+                    img.save(f"{path}/min/{filename}.jpg",
+                             optimize=True, quality=quality)
                 except(Exception) as e: print(e)
     else:
         img = Image.open(path)
         head, tail = os.path.split(path)
-        img.load()
-        jpg = Image.new("RGB", img.size, (255, 255, 255))
-        jpg.paste(img, mask=img.split()[3])
-        jpg.save(f"dados-min.jpg", optimize=True, quality=50)
-        jpg.save(f"{head}/min/{tail}", optimize=True, quality=quality)
+        filename, extension = os.path.splitext(tail)
+        if extension.lower() == ".png":
+            img.load()
+            jpg = Image.new("RGB", img.size, (255, 255, 255))
+            jpg.paste(img, mask=img.split()[3])
+            img = jpg
+        img.save(f"{head}/min/{filename}.jpg", optimize=True, quality=quality)
 
 else:
     print("ERROR: file or directory no found!")
