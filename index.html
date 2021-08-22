@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 
 <head>
     <meta charset="UTF-8">
@@ -19,33 +19,24 @@
             </ul>
         </nav>
         <div id=projects>
-            <button onclick="goRight()" id="right-btn"></button>
-            <button onclick="goLeft()" id="left-btn"></button>
-            <!--
-            <div class="project">
-            <div></div>
-                <div class="project-img" style='background-image: url("../assets/images/fotos\ web\ para\ colgar-min.jpg")'></div>
-                <div class=project-info>
-                    <p><span class=project-name>STUDIO BOOKS</span>
-                        <span class=project-description>ART DIRECTION AND PHOTOGRAPHY</span>
-                    </p>
-                </div>
-            </div> 
-            -->
-            <div class="project">
+            <button onclick=goRight() id=right-btn></button>
+            <button onclick=goLeft() id=left-btn></button>
+
+            <div id=project>
                 <div></div>
-                <div class="project-img full-img" style='background-image: url("assets/images/etiqueta2.jpg")'></div>
-                <!-- <video class=project-video autoplay muted loop src="assets/videos/colchonpararael_animacio.mp4"></video> -->
-                <div class=project-info>
-                    <p><span class=project-name>STUDIO BOOKS</span>
-                        <span class=project-description>ART DIRECTION AND PHOTOGRAPHY</span>
+                <div id=project-image class=project-img></div>
+                <div id=project-big-image class="project-img full-img"></div>
+                <video id=project-video autoplay muted loop></video>
+                <div id=project-info>
+                    <p><span id=project-name>STUDIO BOOKS</span>
+                        <span id=project-description>ART DIRECTION AND PHOTOGRAPHY</span>
                     </p>
                 </div>
             </div>
 
         </div>
     </div>
-    <div id="hidden"></div>
+    <div class=hidden></div>
 </body>
 
 </html>

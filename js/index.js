@@ -1,9 +1,18 @@
 let projectIndex = 0
 let projectLenght
 
-loadNavbar()
+let imageElement = document.getElementById("project-image")
+let bigImageElement = document.getElementById("project-big-image")
+let videoElement = document.getElementById("project-video")
 
+let titleElement = document.getElementById("project-name")
+let descriptionElement = document.getElementById("project-description")
+let actualProject = null
+
+
+loadNavbar()
 loadProjects()
+window.onresize = responsiveImage
 
 function loadNavbar() {
     list = document.querySelector("#personalInfo")
@@ -41,7 +50,26 @@ function loadProjects() {
 }
 
 function loadProject(project) {
-    //Carrega un projecte concret
+    actualProject = project
+    try {
+        imageElement.classList.add("hidden")
+        bigImageElement.classList.add("hidden")
+        videoElement.classList.add("hidden")
+
+        if (project.type == "image") {
+            imageElement.style.backgroundImage = `url("${project.path}")`
+            imageElement.classList.remove("hidden")
+        } else if (project.type == "big-image") {
+            bigImageElement.style.backgroundImage = `url("${project.path}")`
+            bigImageElement.classList.remove("hidden")
+        } else if (project.type == "video") {
+            videoElement.src = project.path
+            videoElement.classList.remove("hidden")
+        }
+        titleElement.innerText = project.name
+        descriptionElement.innerText = project.description
+    }
+    catch (e) { console.log(e) }
 }
 
 function loadMedia(projects) {
@@ -49,7 +77,7 @@ function loadMedia(projects) {
         if (e.type == "image" || e.type == "big-image") {
             let image = new Image;
             image.onload = function () {
-                console.log("image loaded!");
+                console.log(this.src);
             }
             image.src = e.path;
 
@@ -58,7 +86,7 @@ function loadMedia(projects) {
         else if (e.type == "video") {
             let video = document.createElement("video");
             video.onloadeddata = (event) => {
-                console.log("video loaded!");
+                console.log(video.src);
             }
 
             video.src = e.path;
@@ -83,7 +111,6 @@ function goRight() {
     if (projectIndex == projectLenght - 1)
         projectIndex = 0
     else projectIndex++
-
     loadProject(projects[projectIndex])
 }
 
@@ -91,8 +118,11 @@ function goLeft() {
     if (projectIndex == 0)
         projectIndex = projectLenght - 1
     else projectIndex--
-
     loadProject(projects[projectIndex])
+}
+
+function responsiveImage() {
+    console.log(window.innerWidth);
 }
 
 
