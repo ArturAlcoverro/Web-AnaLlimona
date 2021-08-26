@@ -43,7 +43,7 @@ function loadNavbar() {
 }
 
 function loadProjects() {
-    project = sortProjects(projects)
+    projects = sortProjects(projects)
     projectLenght = projects.length
 
     loadMedia(projects)
@@ -158,7 +158,7 @@ function responsiveImage() {
     let wasMobile = isMobile
     isMobile = window.innerWidth <= 600
     if(isMobile && !wasMobile){
-        
+
     }
     console.log("mobile: " + isMobile + "-" +window.innerWidth);
 }

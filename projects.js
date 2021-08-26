@@ -1,13 +1,13 @@
 let projects = [
     {
-        id: 1,
+        id: 2,
         name: "STUDIO BOOKS",
         description: "ART DIRECTION AND PHOTOGRAPHY",
         type: "image",
         path: "../assets/images/min/DSCF5112 2.jpg",
     },
     {
-        id: 2,
+        id: 1,
         name: "MATILDE CASHMERE",
         description: "IDENTITY, CORPORATE HANGTAGS. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "big-image",
