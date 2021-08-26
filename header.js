@@ -5,11 +5,11 @@ let header = [
     },
     {
         line1: "ART DIRECTOR AND",
-        line2: "GRAFIC DESGINS."
+        line2: "GRAPHIC DESGIN"
     },
     {
         line1: "CURRENTLY WORKING IN",
-        line2: "MIRINDA COMPANY STUDIO."
+        line2: "MIRINDA COMPANY STUDIO"
     },
     {
         line1: "PORTFOLIO ON REQUEST",

@@ -6,7 +6,7 @@ parser = ArgumentParser()
 parser.add_argument("-p", "--path", required=False, help="Path of image or directory of images to compress", type=str,
                     default="./")
 parser.add_argument("-q", "--quality", required=False,
-                    help="Image compression quality", type=int, default=40)
+                    help="Image compression quality (default 50)", type=int, default=50)
 
 args = vars(parser.parse_args())
 

@@ -8,12 +8,13 @@
 }
 
 html {
-    font-size: 12px
+    font-size: 12px;
 }
 
 body {
     font-size: 1rem;
     font-family: "Compadre";
+    letter-spacing: -0.3px;
     width: 100%;
     height: 100vh;
     margin: 0;
@@ -68,6 +69,11 @@ ul {
         top: 50%;
         left: 0;
         cursor: pointer;
+
+        &:focus-visible{
+            outline: none;
+            box-shadow: none;
+        }
     }
 
     #right-btn {
@@ -112,16 +118,43 @@ ul {
         position: relative;
         z-index: 1;
 
+        p{
+            margin: 0;
+        }
+
         #project-name {
             font-size: 1.8rem
         }
 
         #project-description {
-            margin-left: 10px;
+            margin-left: 7px;
         }
     }
 }
 
 .hidden {
     display: none;
+}
+
+@media (max-width: 800px) {
+    ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+
+        li {
+            flex: 1;
+            margin: 3px 0;
+            display: inline;
+
+            p {
+                display: inline;
+                margin-right: 5px;
+            }
+        }
+    }
+
+    #project .project-img {
+        margin: 3rem;
+    }
 }

@@ -48,5 +48,4 @@ let projects = [
         type: "video",
         path: "../assets/videos/colchonpararael_animacio.mp4",
     },
-
 ]

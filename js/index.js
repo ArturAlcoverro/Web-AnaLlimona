@@ -1,12 +1,14 @@
 let projectIndex = 0
 let projectLenght
+let isMobile = window.innerWidth <= 600
 
-let imageElement = document.getElementById("project-image")
-let bigImageElement = document.getElementById("project-big-image")
-let videoElement = document.getElementById("project-video")
+const imageElement = document.getElementById("project-image")
+const bigImageElement = document.getElementById("project-big-image")
+const videoElement = document.getElementById("project-video")
 
-let titleElement = document.getElementById("project-name")
-let descriptionElement = document.getElementById("project-description")
+const titleElement = document.getElementById("project-name")
+const descriptionElement = document.getElementById("project-description")
+
 let actualProject = null
 
 
@@ -57,13 +59,13 @@ function loadProject(project) {
         videoElement.classList.add("hidden")
 
         if (project.type == "image") {
-            imageElement.style.backgroundImage = `url("${project.path}")`
+            imageElement.style.backgroundImage = `url("${getPath(project)}")`
             imageElement.classList.remove("hidden")
         } else if (project.type == "big-image") {
-            bigImageElement.style.backgroundImage = `url("${project.path}")`
+            bigImageElement.style.backgroundImage = `url("${getPath(project)}")`
             bigImageElement.classList.remove("hidden")
         } else if (project.type == "video") {
-            videoElement.src = project.path
+            videoElement.src = getPath(project)
             videoElement.classList.remove("hidden")
         }
         titleElement.innerText = project.name
@@ -73,25 +75,56 @@ function loadProject(project) {
 }
 
 function loadMedia(projects) {
-    projects.forEach(e => {
+    if (projects.length > 1) {
+        rightIndex = 0
+        leftIndex = projects.length
+
+        let img = new Image;
+        img.onload = () => {
+            loadNextPrevMedia(projects, 0, projects.length)
+        }
+        img.src = getPath(projects[0])
+    }
+}
+
+function loadNextPrevMedia(projects, rightIndex, leftIndex) {
+    rightIndex++
+    leftIndex--
+    let arr = []
+    let toLoad
+    let loaded = 0
+    let isMore = true
+    if (rightIndex != leftIndex) {
+        arr.push(projects[rightIndex])
+        arr.push(projects[leftIndex])
+        toLoad = 2
+        if (leftIndex - rightIndex == 1) isMore = false
+    }
+    else {
+        arr.push(projects[leftIndex])
+        toLoad = 1
+        isMore = false
+    }
+
+    callback = function () {
+        console.log("Loaded", getPath(arr[loaded]));
+        loaded++
+        if (loaded == toLoad && isMore) {
+            loadNextPrevMedia(projects, rightIndex, leftIndex)
+        }
+    }
+
+    arr.forEach(e => {
+        let element
         if (e.type == "image" || e.type == "big-image") {
-            let image = new Image;
-            image.onload = function () {
-                console.log(this.src);
-            }
-            image.src = e.path;
+            element = new Image;
+            element.onload = callback
 
-            console.log(e.path);
+        } else if (e.type == "video") {
+            element = document.createElement("video");
+            element.onloadeddata = callback
         }
-        else if (e.type == "video") {
-            let video = document.createElement("video");
-            video.onloadeddata = (event) => {
-                console.log(video.src);
-            }
-
-            video.src = e.path;
-            console.log(e.path);
-        }
+        element.src = getPath(e);
     })
 }
 
@@ -122,7 +155,20 @@ function goLeft() {
 }
 
 function responsiveImage() {
-    console.log(window.innerWidth);
+    let wasMobile = isMobile
+    isMobile = window.innerWidth <= 600
+    if(isMobile && !wasMobile){
+        
+    }
+    console.log("mobile: " + isMobile + "-" +window.innerWidth);
+}
+
+function getPath(project) {
+    if (isMobile
+        && project.mobilePath != undefined
+        && project.mobilePath != "")
+        return project.mobilePath
+    return project.path
 }
 
 
