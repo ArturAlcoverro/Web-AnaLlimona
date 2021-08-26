@@ -33,6 +33,7 @@ let projects = [
         description: "IDENTITY, CAPSULE HANGTAGS. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "image",
         path: "../assets/images/min/Bodego_1.jpg",
+        mobilePath: "../assets/images/min/fotos web para colgar4.jpg"
     },
     {
         id: 6,

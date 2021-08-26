@@ -14,7 +14,17 @@ let actualProject = null
 
 loadNavbar()
 loadProjects()
+
 window.onresize = responsiveImage
+
+document.addEventListener('keydown', (event) => {
+    const keyName = event.key;
+    console.log(keyName);
+    if (keyName == 'ArrowRight')
+        goRight()
+    else if (keyName == 'ArrowLeft')
+        goLeft()
+});
 
 function loadNavbar() {
     list = document.querySelector("#personalInfo")
@@ -58,20 +68,25 @@ function loadProject(project) {
         bigImageElement.classList.add("hidden")
         videoElement.classList.add("hidden")
 
-        if (project.type == "image") {
-            imageElement.style.backgroundImage = `url("${getPath(project)}")`
-            imageElement.classList.remove("hidden")
-        } else if (project.type == "big-image") {
-            bigImageElement.style.backgroundImage = `url("${getPath(project)}")`
-            bigImageElement.classList.remove("hidden")
-        } else if (project.type == "video") {
-            videoElement.src = getPath(project)
-            videoElement.classList.remove("hidden")
-        }
+        setImage(project, getPath(project))
+
         titleElement.innerText = project.name
         descriptionElement.innerText = project.description
     }
     catch (e) { console.log(e) }
+}
+
+function setImage(project, path){
+    if (project.type == "image") {
+        imageElement.style.backgroundImage = `url("${path}")`
+        imageElement.classList.remove("hidden")
+    } else if (project.type == "big-image") {
+        bigImageElement.style.backgroundImage = `url("${path}")`
+        bigImageElement.classList.remove("hidden")
+    } else if (project.type == "video") {
+        videoElement.src = getPath(project)
+        videoElement.classList.remove("hidden")
+    }
 }
 
 function loadMedia(projects) {
@@ -157,10 +172,10 @@ function goLeft() {
 function responsiveImage() {
     let wasMobile = isMobile
     isMobile = window.innerWidth <= 600
-    if(isMobile && !wasMobile){
-
+    if (isMobile && !wasMobile) {
+        loadProject(A)
     }
-    console.log("mobile: " + isMobile + "-" +window.innerWidth);
+    console.log("mobile: " + isMobile + "-" + window.innerWidth);
 }
 
 function getPath(project) {
