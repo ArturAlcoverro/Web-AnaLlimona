@@ -1,16 +1,7 @@
 let projectIndex = 0
 let projectLenght
 let isMobile = window.innerWidth <= 600
-
-const imageElement = document.getElementById("project-image")
-const bigImageElement = document.getElementById("project-big-image")
-const videoElement = document.getElementById("project-video")
-
-const titleElement = document.getElementById("project-name")
-const descriptionElement = document.getElementById("project-description")
-
-let actualProject = null
-
+let projectElements = []
 
 loadNavbar()
 loadProjects()
@@ -56,53 +47,91 @@ function loadProjects() {
     projects = sortProjects(projects)
     projectLenght = projects.length
 
-    loadMedia(projects)
+    loadElements()
 
-    loadProject(projects[projectIndex])
+    loadMedia()
+
 }
 
-function loadProject(project) {
-    actualProject = project
-    try {
-        imageElement.classList.add("hidden")
-        bigImageElement.classList.add("hidden")
-        videoElement.classList.add("hidden")
-
-        setImage(project, getPath(project))
-
-        titleElement.innerText = project.name
-        descriptionElement.innerText = project.description
-    }
-    catch (e) { console.log(e) }
+function loadElements() {
+    root = document.getElementById("projects")
+    projects.forEach(project => {
+        element = document.createElement("div")
+        element.className = "project"
+        element.appendChild(document.createElement("div"))
+        if (project.type == "image") {
+            media = document.createElement("div")
+            media.className = "project-img"
+        } else if (project.type == "big-image") {
+            media = document.createElement("div")
+            media.className = "project-img full-img"
+        } else if (project.type == "video") {
+            media = document.createElement("video")
+            media.autoplay = true
+            media.muted = true
+            media.loop = true
+            media.className = "project-video"
+        }
+        element.appendChild(media)
+        info = document.createElement("div")
+        info.className = "project-info"
+        p = document.createElement("p")
+        nameSpan = document.createElement("span")
+        nameSpan.className = "project-name"
+        nameSpan.appendChild(document.createTextNode(project.name))
+        descriptionSpan = document.createElement("span")
+        descriptionSpan.className = "project-description"
+        descriptionSpan.appendChild(document.createTextNode(project.description))
+        p.appendChild(nameSpan)
+        p.appendChild(descriptionSpan)
+        info.appendChild(p)
+        element.appendChild(info)
+        root.appendChild(element)
+        projectElements.push({
+            project: project,
+            element: element
+        })
+    })
 }
 
-function setImage(project, path){
-    if (project.type == "image") {
-        imageElement.style.backgroundImage = `url("${path}")`
-        imageElement.classList.remove("hidden")
-    } else if (project.type == "big-image") {
-        bigImageElement.style.backgroundImage = `url("${path}")`
-        bigImageElement.classList.remove("hidden")
+function setProject(projectElement) {
+    setImage(projectElement)
+    projectElements.forEach(({ project, element }) => {
+        element.classList.remove("visible-flex")
+    })
+    projectElement.element.classList.add("visible-flex")
+}
+
+function setImage(projectElement) {
+    let element = projectElement.element
+    let project = projectElement.project
+    if (project.type == "image" || project.type == "big-image") {
+        element
+            .querySelector(".project-img")
+            .style
+            .backgroundImage = `url("${getPath(project)}")`
     } else if (project.type == "video") {
-        videoElement.src = getPath(project)
-        videoElement.classList.remove("hidden")
+        element
+            .querySelector(".project-video")
+            .src = getPath(project)
     }
 }
 
-function loadMedia(projects) {
+function loadMedia() {
     if (projects.length > 1) {
         rightIndex = 0
         leftIndex = projects.length
 
         let img = new Image;
         img.onload = () => {
-            loadNextPrevMedia(projects, 0, projects.length)
+            setProject(projectElements[0])
+            loadNextPrevMedia(0, projects.length)
         }
-        img.src = getPath(projects[0])
+        img.src = getPath(projectElements[0].project)
     }
 }
 
-function loadNextPrevMedia(projects, rightIndex, leftIndex) {
+function loadNextPrevMedia(rightIndex, leftIndex) {
     rightIndex++
     leftIndex--
     let arr = []
@@ -110,36 +139,38 @@ function loadNextPrevMedia(projects, rightIndex, leftIndex) {
     let loaded = 0
     let isMore = true
     if (rightIndex != leftIndex) {
-        arr.push(projects[rightIndex])
-        arr.push(projects[leftIndex])
+        arr.push(projectElements[rightIndex])
+        arr.push(projectElements[leftIndex])
         toLoad = 2
         if (leftIndex - rightIndex == 1) isMore = false
     }
     else {
-        arr.push(projects[leftIndex])
+        arr.push(projectElements[leftIndex])
         toLoad = 1
         isMore = false
     }
 
-    callback = function () {
-        console.log("Loaded", getPath(arr[loaded]));
+    callback = e => {
+        console.log("Loaded", getPath(arr[loaded].project));
+        console.log(arr[loaded]);
+        setImage(arr[loaded])
         loaded++
         if (loaded == toLoad && isMore) {
-            loadNextPrevMedia(projects, rightIndex, leftIndex)
+            loadNextPrevMedia(rightIndex, leftIndex)
         }
     }
 
     arr.forEach(e => {
-        let element
-        if (e.type == "image" || e.type == "big-image") {
-            element = new Image;
-            element.onload = callback
-
-        } else if (e.type == "video") {
-            element = document.createElement("video");
-            element.onloadeddata = callback
+        let aux
+        let p = e.project
+        if (p.type == "image" || p.type == "big-image") {
+            aux = new Image;
+            aux.onload = callback
+        } else if (p.type == "video") {
+            aux = document.createElement("video");
+            aux.onloadeddata = callback
         }
-        element.src = getPath(e);
+        aux.src = getPath(p);
     })
 }
 
@@ -159,14 +190,14 @@ function goRight() {
     if (projectIndex == projectLenght - 1)
         projectIndex = 0
     else projectIndex++
-    loadProject(projects[projectIndex])
+    setProject(projectElements[projectIndex])
 }
 
 function goLeft() {
     if (projectIndex == 0)
         projectIndex = projectLenght - 1
     else projectIndex--
-    loadProject(projects[projectIndex])
+    setProject(projectElements[projectIndex])
 }
 
 function responsiveImage() {
