@@ -12,6 +12,8 @@ html {
 }
 
 body {
+    background: white;
+    color: black;
     font-size: 1rem;
     font-family: "Compadre";
     letter-spacing: -0.3px;
@@ -70,7 +72,7 @@ ul {
         left: 0;
         cursor: pointer;
 
-        &:focus-visible{
+        &:focus-visible {
             outline: none;
             box-shadow: none;
         }
@@ -118,7 +120,7 @@ ul {
         position: relative;
         z-index: 1;
 
-        p{
+        p {
             margin: 0;
         }
 
@@ -136,7 +138,7 @@ ul {
     display: none;
 }
 
-.visible-flex{
+.visible-flex {
     display: flex;
 }
 
@@ -160,5 +162,12 @@ ul {
 
     .project .project-img {
         margin: 3rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: white;
+        color: black;
     }
 }

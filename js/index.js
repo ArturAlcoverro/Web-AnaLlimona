@@ -1,6 +1,7 @@
+const MOBILE_WITH = 800
 let projectIndex = 0
 let projectLenght
-let isMobile = window.innerWidth <= 600
+let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 
 loadNavbar()
@@ -44,6 +45,8 @@ function loadNavbar() {
 }
 
 function loadProjects() {
+    projects = filterProjects(projects)
+    console.log(projects);
     projects = sortProjects(projects)
     projectLenght = projects.length
 
@@ -186,6 +189,10 @@ function sortProjects(projects) {
     return arr
 }
 
+function filterProjects(projects){
+    return projects.filter(e => (e.hidden == undefined || e.hidden == false))
+}
+
 function goRight() {
     if (projectIndex == projectLenght - 1)
         projectIndex = 0
@@ -202,9 +209,9 @@ function goLeft() {
 
 function responsiveImage() {
     let wasMobile = isMobile
-    isMobile = window.innerWidth <= 600
-    if (isMobile && !wasMobile) {
-        loadProject(A)
+    isMobile = window.innerWidth <= MOBILE_WITH
+    if ((isMobile && !wasMobile) || (!isMobile && wasMobile)) {
+        setImage(projectElements[projectIndex])
     }
     console.log("mobile: " + isMobile + "-" + window.innerWidth);
 }
