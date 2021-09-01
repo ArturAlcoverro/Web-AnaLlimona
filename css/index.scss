@@ -8,7 +8,7 @@
 }
 
 html {
-    font-size: 12px;
+    font-size: 10px;
 }
 
 body {
@@ -33,6 +33,13 @@ body {
 a {
     text-decoration: none;
     color: black;
+}
+
+*:focus {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
 }
 
 ul {
@@ -122,10 +129,11 @@ ul {
 
         p {
             margin: 0;
+            line-height: 160%;
         }
 
         .project-name {
-            font-size: 1.8rem
+            font-size: 1.5rem
         }
 
         .project-description {
@@ -143,6 +151,14 @@ ul {
 }
 
 @media (max-width: 800px) {
+    body {
+        font-size: .8rem;
+    }
+
+    .project .project-info .project-name {
+        font-size: 1.2rem
+    }
+
     ul {
         list-style-type: none;
         display: flex;
@@ -150,7 +166,7 @@ ul {
 
         li {
             flex: 1;
-            margin: 3px 0;
+            margin: 2px 0;
             display: inline;
 
             p {
@@ -161,7 +177,7 @@ ul {
     }
 
     .project .project-img {
-        margin: 3rem;
+        margin: 0rem;
     }
 }
 
