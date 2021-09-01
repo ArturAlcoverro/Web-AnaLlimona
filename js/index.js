@@ -4,6 +4,10 @@ let projectLenght
 let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`)
+
 loadNavbar()
 loadProjects()
 
@@ -73,6 +77,7 @@ function loadElements() {
             media.autoplay = true
             media.muted = true
             media.loop = true
+            media.setAttribute('playsinline', '');
             media.className = "project-video"
         }
         element.appendChild(media)
@@ -189,7 +194,7 @@ function sortProjects(projects) {
     return arr
 }
 
-function filterProjects(projects){
+function filterProjects(projects) {
     return projects.filter(e => (e.hidden == undefined || e.hidden == false))
 }
 
