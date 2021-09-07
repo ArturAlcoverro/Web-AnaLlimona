@@ -4,7 +4,9 @@ let projectLenght
 let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 
-let vh = window.innerHeight * 0.01;
+console.log(window.innerWidth)
+let vh = (window.innerHeight-0.1) * 0.01;
+console.log(vh);
 // Then we set the value in the --vh custom property to the root of the document
 document.documentElement.style.setProperty('--vh', `${vh}px`)
 
@@ -24,6 +26,7 @@ document.addEventListener('keydown', (event) => {
 
 function loadNavbar() {
     list = document.querySelector("#personalInfo")
+    len = header.length - 1 
     header.forEach((e, i) => {
 
         const listItem = document.createElement("li")
@@ -32,7 +35,7 @@ function loadNavbar() {
         p1.appendChild(l1)
         listItem.appendChild(p1)
 
-        if (i != 3) {
+        if (i != len) {
             const p2 = document.createElement("p")
             const l2 = document.createTextNode(e.line2)
             p2.appendChild(l2)
