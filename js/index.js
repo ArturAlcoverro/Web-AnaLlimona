@@ -4,11 +4,7 @@ let projectLenght
 let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 
-console.log(window.innerWidth)
-let vh = (window.innerHeight-0.1) * 0.01;
-console.log(vh);
-// Then we set the value in the --vh custom property to the root of the document
-document.documentElement.style.setProperty('--vh', `${vh}px`)
+
 
 loadNavbar()
 loadProjects()
@@ -216,6 +212,10 @@ function goLeft() {
 }
 
 function responsiveImage() {
+    let vh = (window.innerHeight - 0.1) * 0.01;
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+
     let wasMobile = isMobile
     isMobile = window.innerWidth <= MOBILE_WITH
     if ((isMobile && !wasMobile) || (!isMobile && wasMobile)) {
