@@ -22,7 +22,7 @@ document.addEventListener('keydown', (event) => {
 
 function loadNavbar() {
     list = document.querySelector("#personalInfo")
-    len = header.length - 1 
+    len = header.length - 1
     header.forEach((e, i) => {
 
         const listItem = document.createElement("li")
@@ -54,9 +54,7 @@ function loadProjects() {
     projectLenght = projects.length
 
     loadElements()
-
     loadMedia()
-
 }
 
 function loadElements() {
@@ -128,13 +126,18 @@ function loadMedia() {
     if (projects.length > 1) {
         rightIndex = 0
         leftIndex = projects.length
-
-        let img = new Image;
-        img.onload = () => {
+        if (projects[0].type == "image" || projects[0].type == "big-image") {
+            let img = new Image;
+            img.onload = () => {
+                setProject(projectElements[0])
+                loadNextPrevMedia(0, projects.length)
+            }
+            img.src = getPath(projectElements[0].project)
+        } else {
             setProject(projectElements[0])
-            loadNextPrevMedia(0, projects.length)
         }
-        img.src = getPath(projectElements[0].project)
+    } else {
+        setProject(projectElements[0])
     }
 }
 

@@ -21,7 +21,7 @@ html {
 
 body {
     background: white;
-    color: black;
+    color: var(--text-color);
     font-size: 1rem;
     font-family: "Compadre";
     letter-spacing: -0.3px;
@@ -41,7 +41,7 @@ body {
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--text-color);
 }
 
 * {
@@ -200,6 +200,6 @@ ul {
 @media (prefers-color-scheme: dark) {
     body {
         background-color: white;
-        color: black;
+        color: var(--text-color);
     }
 }
