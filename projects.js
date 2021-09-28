@@ -25,6 +25,14 @@
 
 let projects = [
     {
+        id: 0,
+        name: "IGUALADA",
+        description: "MOBILE & IPAD",
+        type: "image",
+        path: "assets/images/igualada_01.png",
+        hidden: true,
+    },
+    {
         id: 1,
         name: "STUDIO BOOKS",
         description: "ART DIRECTION AND PHOTOGRAPHY",
@@ -38,6 +46,7 @@ let projects = [
         description: "IDENTITY, CORPORATE HANGTAGS. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "big-image",
         path: "assets/images/min/etiqueta2.jpg",
+        hidden: true,
     },
     {
         id: 3,
@@ -45,6 +54,7 @@ let projects = [
         description: "BOOK (INSIDE), FLAVIA COMPANY’S NOVEL, GRAPHIC DESIGN. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "image",
         path: "assets/images/min/Magokoro-2.jpg",
+        hidden: true,
     },
     {
         id: 4,
@@ -52,6 +62,7 @@ let projects = [
         description: "BOOK (INSIDE), FLAVIA COMPANY’S NOVEL, GRAPHIC DESIGN. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "image",
         path: "assets/images/min/9788416673759.jpg",
+        hidden: true,
     },
     {
         id: 5,
@@ -59,7 +70,8 @@ let projects = [
         description: "IDENTITY, CAPSULE HANGTAGS. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "image",
         path: "../assets/images/min/Bodego_1.jpg",
-        mobilePath: "assets/images/min/fotos web para colgar4.jpg"
+        mobilePath: "assets/images/min/fotos web para colgar4.jpg",
+        hidden: true,
     },
     {
         id: 6,
@@ -67,6 +79,7 @@ let projects = [
         description: "IDENTITY, CAPSULE HANGTAGS. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "image",
         path: "assets/images/min/bolsa_auka2_1.jpg",
+        hidden: true,
     },
     {
         id: 7,
@@ -74,5 +87,14 @@ let projects = [
         description: "MOVIE SALE DOSIER, GRAPHIC DESIGN. DESIGNED IN MIRINDA COMPANY STUDIO",
         type: "video",
         path: "assets/videos/colchonpararael_animacio.mp4",
+        hidden: true,
+    },
+    {
+        id: 8,
+        name: "",
+        description: "",
+        type: "image",
+        path: "assets/images/hola.png",
+        hidden: true,
     },
 ]
