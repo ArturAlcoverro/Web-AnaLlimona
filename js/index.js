@@ -13,7 +13,7 @@ window.onresize = responsiveImage
 
 document.addEventListener('keydown', (event) => {
     const keyName = event.key;
-    console.log(keyName);
+    // console.log(keyName);
     if (keyName == 'ArrowRight')
         goRight()
     else if (keyName == 'ArrowLeft')
@@ -24,14 +24,31 @@ function loadNavbar() {
     list = document.querySelector("#personalInfo")
     len = header.length - 1
     header.forEach((e, i) => {
-
         const listItem = document.createElement("li")
-        const p1 = document.createElement("p")
-        const l1 = document.createTextNode(e.line1)
-        p1.appendChild(l1)
-        listItem.appendChild(p1)
 
-        if (i != len) {
+        //LINE 1
+        if (i == 0) {
+            const a = document.createElement("a")
+            a.href = "/"
+            const l1 = document.createTextNode(e.line1)
+            a.appendChild(l1)
+            listItem.appendChild(a)
+        } else {
+            const p1 = document.createElement("p")
+            const l1 = document.createTextNode(e.line1)
+            p1.appendChild(l1)
+            listItem.appendChild(p1)
+        }
+
+        //LINE 2
+        if (i == 0) {
+            const a = document.createElement("a")
+            a.href = "/"
+            const l2 = document.createTextNode(e.line2)
+            a.appendChild(l2)
+            listItem.appendChild(a)
+        }
+        else if (i != len) {
             const p2 = document.createElement("p")
             const l2 = document.createTextNode(e.line2)
             p2.appendChild(l2)
@@ -49,7 +66,7 @@ function loadNavbar() {
 
 function loadProjects() {
     projects = filterProjects(projects)
-    console.log(projects);
+    // console.log(projects);
     projects = sortProjects(projects)
     projectLenght = projects.length
 
@@ -161,8 +178,8 @@ function loadNextPrevMedia(rightIndex, leftIndex) {
     }
 
     callback = e => {
-        console.log("Loaded", getPath(arr[loaded].project));
-        console.log(arr[loaded]);
+        // console.log("Loaded", getPath(arr[loaded].project));
+        // console.log(arr[loaded]);
         setImage(arr[loaded])
         loaded++
         if (loaded == toLoad && isMore) {
@@ -186,7 +203,7 @@ function loadNextPrevMedia(rightIndex, leftIndex) {
 
 function sortProjects(projects) {
     arr = projects.slice()
-    console.log(arr)
+    // console.log(arr)
 
     arr.sort((a, b) => {
         if (a.id < b.id) return -1;
@@ -224,7 +241,7 @@ function responsiveImage() {
     if ((isMobile && !wasMobile) || (!isMobile && wasMobile)) {
         setImage(projectElements[projectIndex])
     }
-    console.log("mobile: " + isMobile + "-" + window.innerWidth);
+    // console.log("mobile: " + isMobile + "-" + window.innerWidth);
 }
 
 function getPath(project) {

@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "Compadre";
+    font-family: "Flama";
     src: url("../assets/fonts/font.otf") format("opentype"),
         url("../assets/fonts/font.ttf"),
         url("../assets/fonts/font.woff"),
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-    font-family: "Compadre";
+    font-family: "Flama";
     src: format("");
 }
 
@@ -23,8 +23,8 @@ body {
     background: white;
     color: var(--text-color);
     font-size: 1rem;
-    font-family: "Compadre";
-    letter-spacing: -0.3px;
+    font-family: "Flama";
+    letter-spacing: -0.1px;
     width: 100%;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
@@ -121,6 +121,7 @@ ul {
         z-index: -1;
 
         &.full-img {
+            background-size: cover;
             margin: 0rem;
             position: absolute;
             height: 100%;
@@ -149,11 +150,11 @@ ul {
         }
 
         .project-name {
-            font-size: 1.5rem
+            font-size: 1rem
         }
 
         .project-description {
-            margin-left: 7px;
+            margin-left: 5px;
         }
     }
 }
@@ -172,7 +173,7 @@ ul {
     }
 
     .project .project-info .project-name {
-        font-size: 1.2rem
+        font-size: .8rem
     }
 
     ul {
@@ -187,12 +188,12 @@ ul {
 
             p {
                 display: inline;
-                margin-right: 5px;
+                margin-right: 2px;
             }
         }
     }
 
-    .project .project-img {
+    .project .project-img, .project .project-video {
         margin: 0rem;
     }
 }
