@@ -26,8 +26,8 @@
 let projects = [
     {
         id: 0,
-        name: "PASSWORD ON REQUEST",
-        description: "Hello, I would love to meet you and show you my featured projects. Text me over.",
+        name: "GIRASOLEEEh",
+        description: "oleee lo girasoleee",
         type: "big-image",
         path: "assets/images/portada.jpg",
         mobilePath: "assets/images/portada_mobile.jpg", 

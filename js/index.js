@@ -1,13 +1,15 @@
 const MOBILE_WITH = 800
+
 let projectIndex = 0
 let projectLenght
 let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
-
+let acces
 
 
 loadNavbar()
 loadProjects()
+lock()
 
 window.onresize = responsiveImage
 
@@ -94,6 +96,7 @@ function loadElements() {
             media.setAttribute('playsinline', '');
             media.className = "project-video"
         }
+
         element.appendChild(media)
         info = document.createElement("div")
         info.className = "project-info"
@@ -218,17 +221,21 @@ function filterProjects(projects) {
 }
 
 function goRight() {
-    if (projectIndex == projectLenght - 1)
-        projectIndex = 0
-    else projectIndex++
-    setProject(projectElements[projectIndex])
+    if (acces) {
+        if (projectIndex == projectLenght - 1)
+            projectIndex = 0
+        else projectIndex++
+        setProject(projectElements[projectIndex])
+    }
 }
 
 function goLeft() {
-    if (projectIndex == 0)
-        projectIndex = projectLenght - 1
-    else projectIndex--
-    setProject(projectElements[projectIndex])
+    if (acces) {
+        if (projectIndex == 0)
+            projectIndex = projectLenght - 1
+        else projectIndex--
+        setProject(projectElements[projectIndex])
+    }
 }
 
 function responsiveImage() {
@@ -241,7 +248,7 @@ function responsiveImage() {
     if ((isMobile && !wasMobile) || (!isMobile && wasMobile)) {
         setImage(projectElements[projectIndex])
     }
-    // console.log("mobile: " + isMobile + "-" + window.innerWidth);
+    console.log("mobile: " + isMobile + "-" + window.innerWidth);
 }
 
 function getPath(project) {
@@ -250,6 +257,52 @@ function getPath(project) {
         && project.mobilePath != "")
         return project.mobilePath
     return project.path
+}
+
+function passwordInputHandler() {
+    const val = document.getElementById("password").value
+    if (val === password) unlock()
+
+}
+
+function passwordChangeHandler() {
+    const e = document.getElementById("password")
+    const val = e.value
+    if (val !== password) e.classList.add("error-input")
+}
+
+function unlock() {
+    const e = document.getElementById("form")
+    e.remove()
+    acces = true
+    projectElements[0].element.querySelector(".project-name").innerHTML = projectElements[0].project.name
+    projectElements[0].element.querySelector(".project-description").innerHTML = projectElements[0].project.description
+}
+
+function lock() {
+    acces = false
+    projectElements[0].element.querySelector(".project-name").innerHTML = passwordTitle
+    projectElements[0].element.querySelector(".project-description").innerHTML = passwordDescription
+}
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
 }
 
 

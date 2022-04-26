@@ -14,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <script src="header.js" defer></script>
+    <script src="password.js" defer></script>
     <script src="projects.js" defer></script>
     <script src="js/index.js" defer></script>
     <title>Ana Llimona — Featured</title>
@@ -29,6 +30,12 @@
             <button onclick=goRight() id=right-btn></button>
             <button onclick=goLeft() id=left-btn></button>
         </div>
+        <div id="form">
+            <div>
+                <label for="password">ENTER PASSWORD</label>
+                <input type="password" id="password" name="password" oninput=passwordInputHandler() onchange=passwordChangeHandler()>
+            </div></div>
+
     </div>
     <div class=hidden></div>
 </body>
