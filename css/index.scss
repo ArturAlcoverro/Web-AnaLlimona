@@ -27,6 +27,7 @@ body {
     letter-spacing: -0.1px;
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
+    height: -webkit-fill-available;
     margin: 0;
 }
 
@@ -124,6 +125,7 @@ ul {
             margin: 0rem;
             position: absolute;
             height: calc(var(--vh, 1vh) * 100);
+            height: -webkit-fill-available;
             width: 100%;
             top: 0;
             left: 0;
@@ -171,6 +173,7 @@ ul {
     top: 0;
     left: 0;
     height: calc(var(--vh, 1vh) * 100);
+    height: -webkit-fill-available;
     width: 100%;
     background: #ffffffb6;
 
@@ -194,6 +197,7 @@ ul {
         width: min(375px, 90vw);
         background-color: #FFFFFF00;
         border: none;
+        border-radius: 0;
         border-bottom: 2px solid black;
     }
 
