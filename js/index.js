@@ -6,12 +6,21 @@ let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 let acces
 
-
 loadNavbar()
 loadProjects()
 lock()
 
+let vh = (window.innerHeight - 0.1) * 0.01;
 window.onresize = responsiveImage
+
+function updateVh(){
+    vh = (window.innerHeight - 0.1) * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+    document.body.style.minHeight = "100vh";
+    setTimeout(() => {
+        document.body.style.minHeight = "-webkit-fill-available";   
+    }, 100);
+}
 
 document.addEventListener('keydown', (event) => {
     const keyName = event.key;
@@ -239,9 +248,7 @@ function goLeft() {
 }
 
 function responsiveImage() {
-    let vh = (window.innerHeight - 0.1) * 0.01;
-    // Then we set the value in the --vh custom property to the root of the document
-    document.documentElement.style.setProperty('--vh', `${vh}px`)
+    console.log("vh",vh);
 
     let wasMobile = isMobile
     isMobile = window.innerWidth <= MOBILE_WITH
@@ -277,6 +284,7 @@ function unlock() {
     acces = true
     projectElements[0].element.querySelector(".project-name").innerHTML = projectElements[0].project.name
     projectElements[0].element.querySelector(".project-description").innerHTML = projectElements[0].project.description
+    updateVh()
 }
 
 function lock() {
