@@ -17,10 +17,16 @@ window.onresize = responsiveImage
 function updateVh(){
     vh = (window.innerHeight - 0.1) * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`)
-    document.body.style.minHeight = "calc(var(--vh, 1vh) * 100)";
+    
+    document.body.style.minHeight = "100vh";   
+
+    setTimeout(() => {
+        document.body.style.minHeight = "calc(var(--vh, 1vh) * 100)";
+    }, 50);
+
     setTimeout(() => {
         document.body.style.minHeight = "-webkit-fill-available";   
-    }, 100);
+    }, 50);
 }
 
 document.addEventListener('keydown', (event) => {
