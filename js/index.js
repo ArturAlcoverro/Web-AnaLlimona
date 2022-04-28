@@ -23,8 +23,8 @@ function updateVh() {
         document.body.style.minHeight = "calc(var(--vh, 1vh) * 100)";
         setTimeout(() => {
             document.body.style.minHeight = "-webkit-fill-available";
-        }, 50);
-    }, 50);
+        }, 200);
+    }, 200);
 }
 
 document.addEventListener('keydown', (event) => {
