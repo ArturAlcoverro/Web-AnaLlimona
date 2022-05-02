@@ -262,19 +262,15 @@ ul {
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text-color: white;
-        --background-color: black; 
-    }
-
-    body {
-        mix-blend-mode: difference;
-    }
-
-    .difference{
-        mix-blend-mode: difference;
+        --text-color: black;
+        --background-color: white;
     }
 
     #form {
-        background: #000000b6;
+        background: #ffffffb6;
+
+        input {
+            background-color: #FFFFFF00;
+        }
     }
 }
