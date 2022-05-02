@@ -12,7 +12,9 @@
 }
 
 :root {
-    --global-paddings: 2rem
+    --global-paddings: 2rem;
+    --text-color: black;
+    --background-color: white;
 }
 
 html {
@@ -21,7 +23,7 @@ html {
 }
 
 body {
-    background: white;
+    background: var(--background-color);
     color: var(--text-color);
     font-size: 1rem;
     font-family: "Flama";
@@ -207,7 +209,8 @@ ul {
         background-color: #FFFFFF00;
         border: none;
         border-radius: 0;
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid var(--text-color);
+        color: var(--text-color);
     }
 
     .error-input {
@@ -247,9 +250,31 @@ ul {
     }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-height: 500px) {
     body {
-        background-color: white;
-        color: var(--text-color);
+        font-size: .8rem;
+    }
+
+    .project .project-info .project-name {
+        font-size: .8rem
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: white;
+        --background-color: black; 
+    }
+
+    body {
+        mix-blend-mode: difference;
+    }
+
+    .difference{
+        mix-blend-mode: difference;
+    }
+
+    #form {
+        background: #000000b6;
     }
 }

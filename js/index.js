@@ -253,14 +253,14 @@ function goLeft() {
 }
 
 function responsiveImage() {
-    console.log("vh", vh);
+    // console.log("vh", vh);
 
     let wasMobile = isMobile
     isMobile = window.innerWidth <= MOBILE_WITH
     if ((isMobile && !wasMobile) || (!isMobile && wasMobile)) {
         setImage(projectElements[projectIndex])
     }
-    console.log("mobile: " + isMobile + "-" + window.innerWidth);
+    // console.log("mobile: " + isMobile + "-" + window.innerWidth);
 }
 
 function getPath(project) {
@@ -284,12 +284,20 @@ function passwordChangeHandler() {
 }
 
 function unlock() {
-    const e = document.getElementById("form")
-    e.remove()
+    const form = document.getElementById("form")
+    form.remove()
     acces = true
     projectElements[0].element.querySelector(".project-name").innerHTML = projectElements[0].project.name
     projectElements[0].element.querySelector(".project-description").innerHTML = projectElements[0].project.description
     updateVh()
+
+    const nav = document.getElementsByTagName("nav")[0]
+    const projecstInfo = document.getElementsByClassName("project-info")
+
+    nav.classList.add("difference")
+    for (let e of projecstInfo) {
+        e.classList.add("difference")      
+    }
 }
 
 function lock() {
