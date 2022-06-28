@@ -1,26 +1,26 @@
-/**
- * Info dels projectes.
- * Aquí es guarda tota la info de cada projecte en format JSON.
- * Els atributs que pot tindre un projecte són:
- *
- * - id.            Atribut amb el qual s'ordenen els projectes.
- *
- * - name.          Títol del projecte.
- *
- * - descriptipon.  Descripció del projecte.
- *
- * - type.          Atribut que defineix el tipus de contingut.
- *                  "image" per projectes amb una imatge estàndard.
- *                  "video" per projectes amb un vídeo.
- *                  "big-image" per projectes amb una imatge que ocupa tota la pantalla.
- *
- * - path.          Direcció/ruta de la imatge/vídeo dins de la carpeta del projecte.
- *
- * - mobilePath.    Atribut optatiu per si es vol una imatge/vídeo diferent en format mòbil.
- *
- * - hidden.        Atribut optatiu per si es vol que un projecte no es mostri a la web.
- *                  true -> el projecte s'oculta.
- *                  false -> el projecte es mostra (valor per defecte).
+/*
+    Info dels projectes.
+    Aquí es guarda tota la info de cada projecte en format JSON.
+    Els atributs que pot tindre un projecte són:
+
+    - id.            Atribut amb el qual s'ordenen els projectes.
+    
+    - name.          Títol del projecte.
+    
+    - descriptipon.  Descripció del projecte.
+    
+    - type.          Atribut que defineix el tipus de contingut.
+                     "image" per projectes amb una imatge estàndard.
+                     "video" per projectes amb un vídeo.
+                     "big-image" per projectes amb una imatge que ocupa tota la pantalla.
+    
+    - path.          Direcció/ruta de la imatge/vídeo dins de la carpeta del projecte.
+    
+    - mobilePath.    Atribut optatiu per si es vol una imatge/vídeo diferent en format mòbil.
+    
+    - hidden.        Atribut optatiu per si es vol que un projecte no es mostri a la web.
+                     true -> el projecte s'oculta.
+                     false -> el projecte es mostra (valor per defecte).
  */
 
 let projects = [

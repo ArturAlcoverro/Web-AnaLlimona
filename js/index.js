@@ -38,44 +38,28 @@ document.addEventListener('keydown', (event) => {
 
 function loadNavbar() {
     list = document.querySelector("#personalInfo")
-    len = header.length - 1
-    header.forEach((e, i) => {
+    const items = header
+    items.forEach((item) => {
         const listItem = document.createElement("li")
+        const lines = [item.line1, item.line2]
 
-        //LINE 1
-        if (i == 0) {
-            const a = document.createElement("a")
-            a.href = "/"
-            const l1 = document.createTextNode(e.line1)
-            a.appendChild(l1)
-            listItem.appendChild(a)
-        } else {
-            const p1 = document.createElement("p")
-            const l1 = document.createTextNode(e.line1)
-            p1.appendChild(l1)
-            listItem.appendChild(p1)
-        }
-
-        //LINE 2
-        if (i == 0) {
-            const a = document.createElement("a")
-            a.href = "/"
-            const l2 = document.createTextNode(e.line2)
-            a.appendChild(l2)
-            listItem.appendChild(a)
-        }
-        else if (i != len) {
-            const p2 = document.createElement("p")
-            const l2 = document.createTextNode(e.line2)
-            p2.appendChild(l2)
-            listItem.appendChild(p2)
-        } else {
-            const mail = document.createElement("a")
-            mail.href = "mailto:" + e.line2.toLowerCase()
-            const l2 = document.createTextNode(e.line2)
-            mail.appendChild(l2)
-            listItem.appendChild(mail)
-        }
+        lines.forEach((line) =>{
+            if ('url' in line && line.url !== ""){
+                const a = document.createElement("a")
+                a.href = line.url
+                if ('newTab' in line && line.newTab != false) {
+                    a.target = "_blank"
+                }
+                const text = document.createTextNode(line.text)
+                a.appendChild(text)
+                listItem.appendChild(a)
+            }else{
+                const p = document.createElement("p")
+                const text = document.createTextNode(line.text)
+                p.appendChild(text)
+                listItem.appendChild(p)
+            }
+        })
         list.appendChild(listItem)
     })
 }
