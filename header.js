@@ -56,7 +56,7 @@ let header = [
     },
     {
         line1: {
-            text: "INSTAGRAM",
+            text: "INSTAGRAM @ANALLIMONA",
             url: "https://www.instagram.com/anallimona",
             newTab: true,
         },

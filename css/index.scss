@@ -54,6 +54,11 @@ a {
     color: var(--text-color);
 }
 
+ #personalInfo a{ 
+     display: inline-block;
+     margin-right: 2px;
+ }
+
 * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     outline: none;
