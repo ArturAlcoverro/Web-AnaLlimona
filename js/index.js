@@ -280,7 +280,7 @@ function unlock() {
 
     nav.classList.add("difference")
     for (let e of projecstInfo) {
-        e.classList.add("difference")      
+        e.classList.add("difference")
     }
 }
 
