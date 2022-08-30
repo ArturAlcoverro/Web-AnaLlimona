@@ -88,7 +88,8 @@ function loadElements() {
             media.className = "project-img full-img"
         } else if (project.type == "video") {
             media = document.createElement("video")
-            media.autoplay = true
+            media.autoplay = false
+            media.controls = false
             media.muted = true
             media.loop = true
             media.setAttribute('playsinline', '');
@@ -134,9 +135,9 @@ function setImage(projectElement) {
             .style
             .backgroundImage = `url("${getPath(project)}")`
     } else if (project.type == "video") {
-        element
-            .querySelector(".project-video")
-            .src = getPath(project)
+        const video = element.querySelector(".project-video")
+        video.src = getPath(project)
+        video.play()
     }
 }
 
