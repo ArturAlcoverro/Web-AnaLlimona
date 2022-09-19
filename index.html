@@ -21,6 +21,9 @@
 </head>
 
 <body>
+    <div class="data">
+        <p class="data1"></p>
+    </div>
     <div id=container>
         <nav>
             <ul id=personalInfo>
@@ -30,12 +33,19 @@
             <button onclick=goRight() id=right-btn></button>
             <button onclick=goLeft() id=left-btn></button>
         </div>
+        <div class="project-info difference">
+            <p>
+                <span class="project-name">aaaaaaaaaaaaa</span>
+                <span class="project-description">aaaaaaaaaaaaa</span>
+            </p>
+        </div>
         <div id="form">
             <div>
                 <label for="password">ENTER PASSWORD</label>
-                <input type="password" id="password" name="password" oninput=passwordInputHandler() onchange=passwordChangeHandler()>
-            </div></div>
-
+                <input type="password" id="password" name="password" oninput=passwordInputHandler()
+                    onchange=passwordChangeHandler()>
+            </div>
+        </div>
     </div>
     <div class=hidden></div>
 </body>
