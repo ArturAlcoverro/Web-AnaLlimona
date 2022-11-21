@@ -8,13 +8,25 @@ let projectElements = []
 let acces
 const projectsContainer = document.getElementById("projects")
 
-loadNavbar()
-loadProjects()
-lock()
+start()
 
-let vh = (window.innerHeight - 0.1) * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`)
-window.onresize = responsiveImage
+function start() {
+    try {
+        loadNavbar()
+        loadProjects()
+        setProject(projectElements[0])
+        lock()
+
+        let vh = (window.innerHeight - 0.1) * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`)
+        window.onresize = responsiveImage
+    }
+    catch (error) {
+        console.log(error)
+        e.toString()
+        document.querySelector(".data1").innerHTML = e.toString()
+    }
+}
 
 function updateVh() {
     document.body.style.minHeight = "100vh";
@@ -76,85 +88,73 @@ function loadProjects() {
 }
 
 function loadElements() {
-    try {
-        root = document.getElementById("projects")
-        projects.forEach(project => {
-            element = document.createElement("div")
-            element.className = "project"
-            // element.appendChild(document.createElement("div"))
-            if (project.type == "image") {
-                media = document.createElement("div")
-                media.className = "project-img"
-                media.style.backgroundImage = `url("${getPath(project)}")`
-            } else if (project.type == "big-image") {
-                media = document.createElement("div")
-                media.className = "project-img full-img"
-                media.style.backgroundImage = `url("${getPath(project)}")`
-            } else if (project.type == "video") {
-                media = document.createElement("video")
-                media.autoplay = false
-                media.controls = false
-                media.muted = true
-                media.loop = true
-                media.setAttribute('playsinline', '');
-                media.className = "project-video"
-                media.src = getPath(project)
-                media.play()
-            }
+    root = document.getElementById("projects")
+    projects.forEach(project => {
+        element = document.createElement("div")
+        element.className = "project"
+        // element.appendChild(document.createElement("div"))
+        if (project.type == "image") {
+            media = document.createElement("div")
+            media.className = "project-img"
+            media.style.backgroundImage = `url("${getPath(project)}")`
+        } else if (project.type == "big-image") {
+            media = document.createElement("div")
+            media.className = "project-img full-img"
+            media.style.backgroundImage = `url("${getPath(project)}")`
+        } else if (project.type == "video") {
+            media = document.createElement("video")
+            media.autoplay = false
+            media.controls = false
+            media.muted = true
+            media.loop = true
+            media.setAttribute('playsinline', '');
+            media.className = "project-video"
+            media.src = getPath(project)
+        }
 
-            element.appendChild(media)
+        element.appendChild(media)
 
-            root.appendChild(element)
-            projectElements.push({
-                project: project,
-                element: element
-            })
+        root.appendChild(element)
+        projectElements.push({
+            project: project,
+            element: element
         })
-    } catch (error) {
-        console.log(error)
-        e.toString()
-        document.querySelector(".data1").innerHTML = e.toString()
-    }
+    })
 }
 
 function setProject(projectElement) {
-    try {
-        // setImage(projectElement)
-        projectElements.forEach(({ project, element }) => {
-            element.classList.remove("visible")
-        })
+    // setImage(projectElement)
+    projectElements.forEach(({ project, element }) => {
+        element.classList.remove("visible")
+    })
 
+    // document.querySelector(".data1").innerHTML = `getTopOffset(projectElement)      :  ${getTopOffset(projectElement)}`
+    // document.querySelector(".data2").innerHTML = `projectHeight * projectIndex      :  ${projectHeight * projectIndex}`
+    // document.querySelector(".data3").innerHTML = `projectElement.element.offsetTop  :  ${projectElement.element.offsetTop - projectsContainer.offsetTop}`
+    // document.querySelector(".data4").innerHTML = `------------------------------------------------------------------------`
+    // // console.log("++++++: ", getTopOffset(projectElement));
+    // console.log("------: ", projectHeight * projectIndex);
+    // console.log("OFFSET: ", projectElement.element.offsetTop - projectsContainer.offsetTop);
+    // console.log("DIFF--: ", projectElement.element.offsetTop - (projectHeight * projectIndex));
+
+    if (projectElement.project.type == "big-image")
+        projectElement.element.classList.add("visible")
+
+    if (projectElement.project.type == "video") {
+        projectElement.element.querySelector("video").currentTime = 0
+        projectElement.element.querySelector("video").play()
+    }
+
+    setTimeout(() => {
         projectsContainer.style.overflow = "scroll"
-
-        // document.querySelector(".data1").innerHTML = `getTopOffset(projectElement)      :  ${getTopOffset(projectElement)}`
-        // document.querySelector(".data2").innerHTML = `projectHeight * projectIndex      :  ${projectHeight * projectIndex}`
-        // document.querySelector(".data3").innerHTML = `projectElement.element.offsetTop  :  ${projectElement.element.offsetTop - projectsContainer.offsetTop}`
-        // document.querySelector(".data4").innerHTML = `------------------------------------------------------------------------`
-        // // console.log("++++++: ", getTopOffset(projectElement));
-        // console.log("------: ", projectHeight * projectIndex);
-        // console.log("OFFSET: ", projectElement.element.offsetTop - projectsContainer.offsetTop);
-        // console.log("DIFF--: ", projectElement.element.offsetTop - (projectHeight * projectIndex));
 
         projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
         // projectsContainer.scroll(0, projectHeight * projectIndex)
         projectsContainer.style.overflow = "hidden"
-
-        if (projectElement.project.type == "big-image")
-            projectElement.element.classList.add("visible")
-
-        if (projectElement.project.type == "video") {
-            projectElement.element.querySelector("video").currentTime = 0
-            projectElement.element.querySelector("video").play()
-        }
-
+    
         document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
         document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
-    } catch (error) {
-        console.log(error)
-        e.toString()
-        document.querySelector(".data1").innerHTML = e.toString()
-    }
-
+    }, 100);
 }
 
 function setImage(projectElement) {
@@ -244,8 +244,7 @@ function unlock() {
     const form = document.getElementById("form")
     form.remove()
     acces = true
-    projectElements[0].element.querySelector(".project-name").innerHTML = projectElements[0].project.name
-    projectElements[0].element.querySelector(".project-description").innerHTML = projectElements[0].project.description
+    setProject(projectElements[0])
     updateVh()
 
     const nav = document.getElementsByTagName("nav")[0]
