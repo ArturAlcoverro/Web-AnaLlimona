@@ -124,7 +124,7 @@ function loadElements() {
 
 function handlePreviousProject(projectElement) {
     if (projectElement.project.type == "video") {
-        projectElement.element.querySelector("video").stop()
+        projectElement.element.querySelector("video").pause()
         projectElement.element.querySelector("video").currentTime = 0
     }
 }
