@@ -104,7 +104,7 @@ function loadElements() {
         } else if (project.type == "video") {
             media = document.createElement("video")
             media.autoplay = false
-            media.controls = false
+            media.controls = true
             media.muted = true
             media.loop = true
             media.setAttribute('playsinline', '');
@@ -122,20 +122,27 @@ function loadElements() {
     })
 }
 
+function handlePreviousProject(projectElement) {
+    if (projectElement.project.type == "video") {
+        projectElement.element.querySelector("video").stop()
+        projectElement.element.querySelector("video").currentTime = 0
+    }
+}
+
 function setProject(projectElement) {
     // setImage(projectElement)
     projectElements.forEach(({ project, element }) => {
         element.classList.remove("visible")
     })
 
-    // document.querySelector(".data1").innerHTML = `getTopOffset(projectElement)      :  ${getTopOffset(projectElement)}`
-    // document.querySelector(".data2").innerHTML = `projectHeight * projectIndex      :  ${projectHeight * projectIndex}`
-    // document.querySelector(".data3").innerHTML = `projectElement.element.offsetTop  :  ${projectElement.element.offsetTop - projectsContainer.offsetTop}`
-    // document.querySelector(".data4").innerHTML = `------------------------------------------------------------------------`
-    // // console.log("++++++: ", getTopOffset(projectElement));
-    // console.log("------: ", projectHeight * projectIndex);
-    // console.log("OFFSET: ", projectElement.element.offsetTop - projectsContainer.offsetTop);
-    // console.log("DIFF--: ", projectElement.element.offsetTop - (projectHeight * projectIndex));
+    /* document.querySelector(".data1").innerHTML = `getTopOffset(projectElement)      :  ${getTopOffset(projectElement)}`
+    document.querySelector(".data2").innerHTML = `projectHeight * projectIndex      :  ${projectHeight * projectIndex}`
+    document.querySelector(".data3").innerHTML = `projectElement.element.offsetTop  :  ${projectElement.element.offsetTop - projectsContainer.offsetTop}`
+    document.querySelector(".data4").innerHTML = `------------------------------------------------------------------------`
+    // console.log("++++++: ", getTopOffset(projectElement));
+    console.log("------: ", projectHeight * projectIndex);
+    console.log("OFFSET: ", projectElement.element.offsetTop - projectsContainer.offsetTop);
+    console.log("DIFF--: ", projectElement.element.offsetTop - (projectHeight * projectIndex)); */
 
     if (projectElement.project.type == "big-image")
         projectElement.element.classList.add("visible")
@@ -145,16 +152,14 @@ function setProject(projectElement) {
         projectElement.element.querySelector("video").play()
     }
 
-    setTimeout(() => {
-        projectsContainer.style.overflow = "scroll"
+    projectsContainer.style.overflow = "scroll"
 
-        projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
-        // projectsContainer.scroll(0, projectHeight * projectIndex)
-        projectsContainer.style.overflow = "hidden"
-    
-        document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
-        document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
-    }, 100);
+    projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
+    // projectsContainer.scroll(0, projectHeight * projectIndex)
+    projectsContainer.style.overflow = "hidden"
+
+    document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
+    document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
 }
 
 function setImage(projectElement) {
@@ -188,8 +193,11 @@ function filterProjects(projects) {
     return projects.filter(e => (e.hidden == undefined || e.hidden == false))
 }
 
+
+
 function goRight() {
     if (acces) {
+        handlePreviousProject(projectElements[projectIndex])
         if (projectIndex == projectLenght - 1)
             projectIndex = 0
         else projectIndex++
@@ -199,6 +207,7 @@ function goRight() {
 
 function goLeft() {
     if (acces) {
+        handlePreviousProject(projectElements[projectIndex])
         if (projectIndex == 0)
             projectIndex = projectLenght - 1
         else projectIndex--
