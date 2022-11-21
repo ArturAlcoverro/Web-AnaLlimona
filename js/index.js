@@ -104,7 +104,7 @@ function loadElements() {
         } else if (project.type == "video") {
             media = document.createElement("video")
             media.autoplay = false
-            media.controls = true
+            media.controls = false
             media.muted = true
             media.loop = true
             media.setAttribute('playsinline', '');
