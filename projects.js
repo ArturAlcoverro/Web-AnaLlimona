@@ -38,8 +38,8 @@ let projects = [
         name: "BRAND IDENTITY",
         description: "Tous jewlery rebranding. ©Mirinda Company ©Ruiz Company",
         type: "video",
-        path: "assets/videos/TOUS-paraWEB3.webm",
-        mobilePath: "assets/videos/TOUS-para-mobile2.webm",
+        path: "assets/videos/TOUS-paraWEB3.mp4",
+        mobilePath: "assets/videos/TOUS-para-mobile2.mp4",
         hidden: false,
     },
     {
@@ -103,8 +103,8 @@ let projects = [
         name: "BRAND IDENTITY",
         description: "Matilde Cashmere photographed by Béla Adler. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/matildecashemer_desktop.webm",
-        mobilePath: "assets/videos/matildecashemer_mobile.webm",
+        path: "assets/videos/matildecashemer_desktop.mp4",
+        mobilePath: "assets/videos/matildecashemer_mobile.mp4",
         hidden: false,
     },
     {
@@ -112,7 +112,7 @@ let projects = [
         name: "BRAND IDENTITY",
         description: "Cuines de Santa Caterina restaurant by Grupo Tragaluz. Illustration by Natália Pàmies. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/cuines.webm",
+        path: "assets/videos/cuines.mp4",
         hidden: false,
     }, 
     {
@@ -120,8 +120,8 @@ let projects = [
         name: "BRAND IDENTITY",
         description: "Bijoux photographed by Martina Matencio. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/bijoux_desktop.webm",
-        mobilePath: "assets/videos/bijoux_mobile.webm",
+        path: "assets/videos/bijoux_desktop.mp4",
+        mobilePath: "assets/videos/bijoux_mobile.mp4",
         hidden: false,
     },
     {
@@ -129,8 +129,8 @@ let projects = [
         name: "CONCEPT",
         description: "Homeless objects.",
         type: "video",
-        path: "assets/videos/homeless_desktop.webm",
-        mobilePath: "assets/videos/homeless_mobile.webm",
+        path: "assets/videos/homeless_desktop.mp4",
+        mobilePath: "assets/videos/homeless_mobile.mp4",
         hidden: false,
     },
     {
@@ -138,8 +138,8 @@ let projects = [
         name: "UX&UI DESIGN",
         description: "Mirinda Company webpage. Programmimg by Llos&Co ©Mirinda Company",
         type: "video",
-        path: "assets/videos/videowebmirinda.webm",
-        mobilePath: "assets/videos/videowebmirinda_mobile.webm", 
+        path: "assets/videos/videowebmirinda.mp4",
+        mobilePath: "assets/videos/videowebmirinda_mobile.mp4", 
         hidden: false,
     },
     {
@@ -147,7 +147,7 @@ let projects = [
         name: "UX&UI DESIGN",
         description: "Textura Interiors fragances landing webpage. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/landing fragancias.webm",
+        path: "assets/videos/landing fragancias.mp4",
         hidden: false,
     },
     {
@@ -155,8 +155,8 @@ let projects = [
         name: "UX&UI DESIGN",
         description: "Textura Interiors bed customizer. Photographed by Salva López. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/mobile_x_custom.webm",
-        mobilePath: "assets/videos/mobile_x_custom_mb2.webm", 
+        path: "assets/videos/mobile_x_custom.mp4",
+        mobilePath: "assets/videos/mobile_x_custom_mb2.mp4", 
         hidden: false,
     },
     {
@@ -180,7 +180,7 @@ let projects = [
         name: "EDITORIAL DESIGN",
         description: "Poster for Ana La Santa restaurant by Grupo Tragaluz. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/analasanta.webm",
+        path: "assets/videos/analasanta.mp4",
         hidden: false,
     },
     {
@@ -188,7 +188,7 @@ let projects = [
         name: "UX&UI DESIGN",
         description: "Textura Interiors newsletters and social media. Photographed by Salva López. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/textura nl materiales.webm",
+        path: "assets/videos/textura nl materiales.mp4",
         hidden: false,
     },
     {
@@ -196,7 +196,7 @@ let projects = [
         name: "UX&UI DESIGN",
         description: "Textura Interiors newsletters and social media. Photographed by Salva López. ©Mirinda Company",
         type: "video",
-        path: "assets/videos/textura nl instantes.webm",
+        path: "assets/videos/textura nl instantes.mp4",
         hidden: false,
     },
     {
