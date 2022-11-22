@@ -1,8 +1,6 @@
 const MOBILE_WITH = 800
 
 let projectIndex = 0
-let projectLenght
-let projectHeight
 let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 let acces
@@ -43,7 +41,7 @@ function updateVh() {
 
 document.addEventListener('keydown', (event) => {
     const keyName = event.key;
-    // console.log(keyName);
+
     if (keyName == 'ArrowRight')
         goRight()
     else if (keyName == 'ArrowLeft')
@@ -51,9 +49,9 @@ document.addEventListener('keydown', (event) => {
 });
 
 function loadNavbar() {
-    list = document.querySelector("#personalInfo")
-    const items = header
-    items.forEach((item) => {
+    const list = document.querySelector("#personalInfo")
+
+    header.forEach((item) => {
         const listItem = document.createElement("li")
         const lines = [item.line1, item.line2]
 
@@ -81,10 +79,7 @@ function loadNavbar() {
 function loadProjects() {
     projects = filterProjects(projects)
     projects = sortProjects(projects)
-    projectLenght = projects.length
-
     loadElements()
-    projectHeight = document.querySelector(".project").offsetHeight
 }
 
 function loadElements() {
@@ -103,7 +98,7 @@ function loadElements() {
             media.style.backgroundImage = `url("${getPath(project)}")`
         } else if (project.type == "video") {
             media = document.createElement("video")
-            media.autoplay = false
+            media.autoplay = true
             media.controls = false
             media.muted = true
             media.loop = true
@@ -124,45 +119,28 @@ function loadElements() {
 
 function handlePreviousProject(projectElement) {
     if (projectElement.project.type == "video") {
-        projectElement.element.querySelector("video").pause()
         projectElement.element.querySelector("video").currentTime = 0
     }
 }
 
 function setProject(projectElement) {
-    // setImage(projectElement)
+
     projectElements.forEach(({ project, element }) => {
         element.classList.remove("visible")
     })
 
-    /* document.querySelector(".data1").innerHTML = `getTopOffset(projectElement)      :  ${getTopOffset(projectElement)}`
-    document.querySelector(".data2").innerHTML = `projectHeight * projectIndex      :  ${projectHeight * projectIndex}`
-    document.querySelector(".data3").innerHTML = `projectElement.element.offsetTop  :  ${projectElement.element.offsetTop - projectsContainer.offsetTop}`
-    document.querySelector(".data4").innerHTML = `------------------------------------------------------------------------`
-    // console.log("++++++: ", getTopOffset(projectElement));
-    console.log("------: ", projectHeight * projectIndex);
-    console.log("OFFSET: ", projectElement.element.offsetTop - projectsContainer.offsetTop);
-    console.log("DIFF--: ", projectElement.element.offsetTop - (projectHeight * projectIndex)); */
-
     if (projectElement.project.type == "big-image")
         projectElement.element.classList.add("visible")
 
-    if (projectElement.project.type == "video") {
-        projectElement.element.querySelector("video").currentTime = 0
-        projectElement.element.querySelector("video").play()
-    }
-
     projectsContainer.style.overflow = "scroll"
-
     projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
-    // projectsContainer.scroll(0, projectHeight * projectIndex)
     projectsContainer.style.overflow = "hidden"
 
     document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
     document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
 }
 
-function setImage(projectElement) {
+function setContent(projectElement) {
     let element = projectElement.element
     let project = projectElement.project
 
@@ -179,7 +157,6 @@ function setImage(projectElement) {
 
 function sortProjects(projects) {
     arr = projects.slice()
-    // console.log(arr)
 
     arr.sort((a, b) => {
         if (a.id < b.id) return -1;
@@ -194,11 +171,10 @@ function filterProjects(projects) {
 }
 
 
-
 function goRight() {
     if (acces) {
         handlePreviousProject(projectElements[projectIndex])
-        if (projectIndex == projectLenght - 1)
+        if (projectIndex == projects.length - 1)
             projectIndex = 0
         else projectIndex++
         setProject(projectElements[projectIndex])
@@ -209,7 +185,7 @@ function goLeft() {
     if (acces) {
         handlePreviousProject(projectElements[projectIndex])
         if (projectIndex == 0)
-            projectIndex = projectLenght - 1
+            projectIndex = projects.length - 1
         else projectIndex--
         setProject(projectElements[projectIndex])
     }
@@ -218,15 +194,11 @@ function goLeft() {
 function responsiveImage() {
     let wasMobile = isMobile
     isMobile = window.innerWidth <= MOBILE_WITH
-    console.log(isMobile);
+
     if ((isMobile && !wasMobile) || (!isMobile && wasMobile)) {
-        setImage(projectElements[projectIndex])
+        setContent(projectElements[projectIndex])
     }
-
-    projectHeight = document.querySelector(".project").offsetHeight
     projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
-
-    // console.log("mobile: " + isMobile + "-" + window.innerWidth);
 }
 
 function getPath(project) {
@@ -249,6 +221,12 @@ function passwordChangeHandler() {
     if (val !== password) e.classList.add("error-input")
 }
 
+function lock() {
+    acces = false
+    document.querySelector(".project-name").innerHTML = passwordTitle
+    document.querySelector(".project-description").innerHTML = passwordDescription
+}
+
 function unlock() {
     const form = document.getElementById("form")
     form.remove()
@@ -262,19 +240,5 @@ function unlock() {
     nav.classList.add("difference")
     for (let e of projecstInfo) {
         e.classList.add("difference")
-    }
-}
-
-function lock() {
-    acces = false
-    document.querySelector(".project-name").innerHTML = passwordTitle
-    document.querySelector(".project-description").innerHTML = passwordDescription
-}
-
-function getTopOffset(projectElement) {
-    let offset = 0
-    for (let i = 0; i < projectElements.length; i++) {
-        if (projectElements[i] == projectElement) return offset;
-        offset += projectElement.element.offsetHeight;
     }
 }
