@@ -5,6 +5,7 @@ let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 let acces
 const projectsContainer = document.getElementById("projects")
+const logElement = document.getElementById("data")
 
 start()
 
@@ -118,26 +119,32 @@ function loadElements() {
 }
 
 function handlePreviousProject(projectElement) {
+    log("handlePreviousProject")
     if (projectElement.project.type == "video") {
+        log('⭕️ -- js/index.js:124 - ')
         projectElement.element.querySelector("video").currentTime = 0
+        log('⭕️ -- js/index.js:126 - ')
     }
 }
 
 function setProject(projectElement) {
-
+    log("setProject")
+    log('⭕️ -- js/index.js:130 - ' )
     projectElements.forEach(({ project, element }) => {
         element.classList.remove("visible")
     })
-
+    log('⭕️ -- js/index.js:133 - ' )
     if (projectElement.project.type == "big-image")
         projectElement.element.classList.add("visible")
-
-    projectsContainer.style.overflow = "scroll"
+    log('⭕️ -- js/index.js:136 - ' )
+    // projectsContainer.style.overflow = "scroll"
     projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
-    projectsContainer.style.overflow = "hidden"
-
+    // projectsContainer.style.overflow = "hidden"
+    log('⭕️ -- js/index.js:140 - ' )
     document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
+    log('⭕️ -- js/index.js:142 - ' )
     document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
+    log('⭕️ -- js/index.js:144 - ' )
 }
 
 function setContent(projectElement) {
@@ -172,6 +179,8 @@ function filterProjects(projects) {
 
 
 function goRight() {
+    clearLog()
+    log("goRight")
     if (acces) {
         handlePreviousProject(projectElements[projectIndex])
         if (projectIndex == projects.length - 1)
@@ -182,6 +191,8 @@ function goRight() {
 }
 
 function goLeft() {
+    clearLog()
+    log("goLeft")
     if (acces) {
         handlePreviousProject(projectElements[projectIndex])
         if (projectIndex == 0)
@@ -241,4 +252,14 @@ function unlock() {
     for (let e of projecstInfo) {
         e.classList.add("difference")
     }
+}
+
+function log(text){
+    let p = document.createElement('p')
+    p.innerHTML = text
+    logElement.appendChild(p)
+}
+
+function clearLog(){
+    logElement.innerHTML = '';
 }
