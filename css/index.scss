@@ -318,7 +318,12 @@ ul {
     }
 }
 
-.data{
+#data{
     position: absolute;
-    top: 100px
+    top: 100px;
+    color: white;
+    font-weight: 900;
+    font-size: 1.25rem;
+    font-family: monospace;
+    background-color: #0000007d;
 }
