@@ -5,7 +5,6 @@ let isMobile = window.innerWidth <= MOBILE_WITH
 let projectElements = []
 let acces
 const projectsContainer = document.getElementById("projects")
-const logElement = document.getElementById("data")
 
 start()
 
@@ -121,30 +120,32 @@ function loadElements() {
 function handlePreviousProject(projectElement) {
     log("handlePreviousProject")
     if (projectElement.project.type == "video") {
-        log('⭕️ -- js/index.js:124 - ')
+        // log('⭕️ -- js/index.js:124 - ')
         projectElement.element.querySelector("video").currentTime = 0
-        log('⭕️ -- js/index.js:126 - ')
+        // log('⭕️ -- js/index.js:126 - ')
     }
 }
 
 function setProject(projectElement) {
     log("setProject")
-    log('⭕️ -- js/index.js:130 - ' )
+    // log('⭕️ -- js/index.js:130 - ' )
     projectElements.forEach(({ project, element }) => {
         element.classList.remove("visible")
+        element.classList.remove("selected")
     })
-    log('⭕️ -- js/index.js:133 - ' )
+    // log('⭕️ -- js/index.js:133 - ' )
     if (projectElement.project.type == "big-image")
         projectElement.element.classList.add("visible")
-    log('⭕️ -- js/index.js:136 - ' )
+    // log('⭕️ -- js/index.js:136 - ' )
     // projectsContainer.style.overflow = "scroll"
-    projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
+    projectElement.element.classList.add("selected")
+    // projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
     // projectsContainer.style.overflow = "hidden"
-    log('⭕️ -- js/index.js:140 - ' )
+    // log('⭕️ -- js/index.js:140 - ' )
     document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
-    log('⭕️ -- js/index.js:142 - ' )
+    // log('⭕️ -- js/index.js:142 - ' )
     document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
-    log('⭕️ -- js/index.js:144 - ' )
+    // log('⭕️ -- js/index.js:144 - ' )
 }
 
 function setContent(projectElement) {
@@ -255,11 +256,11 @@ function unlock() {
 }
 
 function log(text){
-    let p = document.createElement('p')
-    p.innerHTML = text
-    logElement.appendChild(p)
+    // let p = document.createElement('p')
+    // p.innerHTML = text
+    // document.getElementById("data").appendChild(p)
 }
 
 function clearLog(){
-    logElement.innerHTML = '';
+    // document.getElementById("data").innerHTML = '';
 }
