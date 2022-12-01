@@ -114,7 +114,6 @@ ul {
 
 
 #projects {
-    position: relative;
     width: 100%;
     overflow: hidden;
     flex: 1;
@@ -151,22 +150,27 @@ ul {
 
 .project {   
     height: 100%;
-    width: 100%;
-    // width: calc(100vw - 4rem);
+    // width: 100%;
+    top: 50%;
+    width: calc(100vw - 0rem);
     position: absolute;
-    left: calc(100% + 2rem);
+    left: calc(100% + 0rem);
     flex-grow: 0;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transform: translateY(-50%);
 
     &.selected{
-        left: 0;
+        left: 0rem;
     }
 
     .project-img {
-        margin: 8rem;
+        width: calc(100% - 4rem - 22rem);
+        position: relative;
+        left: 2rem;
+        margin: 11rem;
         flex-grow: 1;
         background-position: center;
         background-repeat: no-repeat;
@@ -187,7 +191,9 @@ ul {
     }
 
     .project-video {
-        margin: 4rem;
+        width: calc(100% - 4rem - 15rem);
+        padding-left: 2rem ;
+        margin: 7.5rem;
         height: 0px;
         flex-grow: 1;
         z-index: -1;
@@ -298,6 +304,7 @@ ul {
     .project .project-img,
     .project .project-video {
         margin: 0rem;
+        width: calc(100% - 4rem);
     }
 }
 

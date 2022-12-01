@@ -208,7 +208,7 @@ function responsiveImage() {
     isMobile = window.innerWidth <= MOBILE_WITH
 
     if ((isMobile && !wasMobile) || (!isMobile && wasMobile)) {
-        setContent(projectElements[projectIndex])
+        projectElements.forEach(e => setContent(e))
     }
     projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
 }
