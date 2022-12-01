@@ -83,7 +83,8 @@ function loadProjects() {
 }
 
 function loadElements() {
-    root = document.getElementById("projects")
+    let media
+    let root = document.getElementById("projects")
     projects.forEach(project => {
         element = document.createElement("div")
         element.className = "project"
@@ -92,22 +93,18 @@ function loadElements() {
             media = document.createElement("div")
             media.className = "project-img"
             media.style.backgroundImage = `url("${getPath(project)}")`
+            element.appendChild(media)
+
         } else if (project.type == "big-image") {
             media = document.createElement("div")
             media.className = "project-img full-img"
             media.style.backgroundImage = `url("${getPath(project)}")`
+            element.appendChild(media)
+
         } else if (project.type == "video") {
-            media = document.createElement("video")
-            media.autoplay = true
-            media.controls = false
-            media.muted = true
-            media.loop = true
-            media.setAttribute('playsinline', '');
-            media.className = "project-video"
-            media.src = getPath(project)
+            // media = createVideo(project)
         }
 
-        element.appendChild(media)
 
         root.appendChild(element)
         projectElements.push({
@@ -117,34 +114,54 @@ function loadElements() {
     })
 }
 
+function createVideo(project) {
+    const media = document.createElement("video")
+    media.autoplay = true
+    media.controls = false
+    media.muted = true
+    media.loop = true
+    media.setAttribute('playsinline', '');
+    media.className = "project-video"
+    media.src = getPath(project)
+    return media
+}
+
 function handlePreviousProject(projectElement) {
     log("handlePreviousProject")
     if (projectElement.project.type == "video") {
         // log('⭕️ -- js/index.js:124 - ')
-        projectElement.element.querySelector("video").currentTime = 0
         // log('⭕️ -- js/index.js:126 - ')
+        setTimeout(() => {
+            projectElement.element.querySelector("video").remove()
+        }, 100);
     }
 }
 
 function setProject(projectElement) {
-    log("setProject")
     // log('⭕️ -- js/index.js:130 - ' )
-    projectElements.forEach(({ project, element }) => {
-        element.classList.remove("visible")
-        element.classList.remove("selected")
-    })
     // log('⭕️ -- js/index.js:133 - ' )
-    if (projectElement.project.type == "big-image")
-        projectElement.element.classList.add("visible")
+
+    if (projectElement.project.type == "video") {
+        projectElement.element.appendChild(createVideo(projectElement.project))
+    }
+
     // log('⭕️ -- js/index.js:136 - ' )
     // projectsContainer.style.overflow = "scroll"
-    projectElement.element.classList.add("selected")
     // projectsContainer.scroll((document.documentElement.clientWidth - 40) * projectIndex, 0)
     // projectsContainer.style.overflow = "hidden"
     // log('⭕️ -- js/index.js:140 - ' )
-    document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
     // log('⭕️ -- js/index.js:142 - ' )
-    document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
+    setTimeout(() => {
+        projectElements.forEach(({ project, element }) => {
+            element.classList.remove("visible")
+            element.classList.remove("selected")
+        })
+        if (projectElement.project.type == "big-image")
+            projectElement.element.classList.add("visible")
+        projectElement.element.classList.add("selected")
+        document.getElementsByClassName("project-name")[0].innerHTML = projectElement.project.name
+        document.getElementsByClassName("project-description")[0].innerHTML = projectElement.project.description
+    }, 100);
     // log('⭕️ -- js/index.js:144 - ' )
 }
 
@@ -255,12 +272,12 @@ function unlock() {
     }
 }
 
-function log(text){
+function log(text) {
     // let p = document.createElement('p')
     // p.innerHTML = text
     // document.getElementById("data").appendChild(p)
 }
 
-function clearLog(){
+function clearLog() {
     // document.getElementById("data").innerHTML = '';
 }
