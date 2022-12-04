@@ -270,8 +270,6 @@ function unlock() {
     for (let e of projecstInfo) {
         e.classList.add("difference")
     }
-
-    refreshHiddenProjectsPosition()
 }
 
 function log(text) {
@@ -282,18 +280,4 @@ function log(text) {
 
 function clearLog() {
     // document.getElementById("data").innerHTML = '';
-}
-
-function refreshHiddenProjectsPosition() {
-    let elements = document.querySelectorAll('.project');
-
-    elements.forEach(function (element) {
-        element.style.left = '300%';
-    });
-
-    setTimeout(() => {
-        elements.forEach(function (element) {
-            element.style.left = '';
-        });
-    }, 5000);
 }
