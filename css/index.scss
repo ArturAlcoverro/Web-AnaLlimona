@@ -20,6 +20,7 @@
 html {
     height: -webkit-fill-available;
     font-size: 10px;
+    overflow: hidden;
 }
 
 body {
@@ -156,7 +157,7 @@ ul {
     width: 100vw;
     position: absolute;
     // left: calc(100% + 0rem);
-    left: 100%;
+    left: 200%;
     flex-grow: 0;
     flex-shrink: 0;
     display: flex;
@@ -165,7 +166,7 @@ ul {
     transform: translateY(-50%);
 
     &.selected{
-        left: 0rem;
+        left: 0rem !important;
     }
 
     .project-img {
