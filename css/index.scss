@@ -152,9 +152,11 @@ ul {
     height: 100%;
     // width: 100%;
     top: 50%;
-    width: calc(100vw - 0rem);
+    // width: calc(100vw - 0rem);
+    width: 100vw;
     position: absolute;
-    left: calc(100% + 0rem);
+    // left: calc(100% + 0rem);
+    left: 100%;
     flex-grow: 0;
     flex-shrink: 0;
     display: flex;
